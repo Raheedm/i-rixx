@@ -40,7 +40,7 @@ function TeamRegistration() {
       formData.append('idCardImage', idCardImage);
 
       try {
-        const response = await fetch('https://139.59.55.188:5000/api/teamregfile', {
+        const response = await fetch('https://i-rix.tech/api/teamregfile', {
           method: 'POST',
           body: formData,
         });
