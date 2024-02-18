@@ -30,7 +30,7 @@ const Footer = () => {
       }}
     >
       <Typography variant="body1" className="TextStyle">
-        © Copyright I-RIX 2024 - All Rights Reserved
+        © Copyright I-RIX 2024
       </Typography>
       
       <a href="https://www.instagram.com/irix_dcs/" target="_blank">

@@ -106,7 +106,7 @@ function Home({ open, setOpen, handleOpen, handleClose, inProp, setInProp }) {
                       </Link>
                     )} */}
                     <Link to="/about" className="menulink">
-                      About
+                      Partners
                       <div>
                         <img className="test3" src={line1} alt="line" />
                       </div>
@@ -160,7 +160,7 @@ function Home({ open, setOpen, handleOpen, handleClose, inProp, setInProp }) {
                       style={{ cursor: 'pointer' }}
                       
                     >
-                      Team Registeration
+                      Register
                       <div>
                         <img className="test4" src={line2} alt="line" />
                       </div>
@@ -239,7 +239,7 @@ function Home({ open, setOpen, handleOpen, handleClose, inProp, setInProp }) {
                     order={{ lg: 4, xs: 3 }}
                   >
                     <Link to="/partners" className="menulink">
-                      Partners
+                      About Us
                       <div>
                         <img className="test6" src={line2} alt="line" />
                       </div>
