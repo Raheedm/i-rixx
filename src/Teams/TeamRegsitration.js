@@ -40,7 +40,7 @@ function TeamRegistration() {
       formData.append('idCardImage', idCardImage);
 
       try {
-        const response = await fetch('http://localhost:5000/api/teamregfile', {
+        const response = await fetch('http://139.59.55.188:5000/api/teamregfile', {
           method: 'POST',
           body: formData,
         });
