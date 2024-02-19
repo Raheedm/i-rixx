@@ -1,0 +1,139 @@
+ 
+  .section {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 660.475px;
+    min-height: 660.48px;
+    background-color: transparent; 
+  }
+  
+  
+  .title {
+    display: none;
+    margin: 0px 0px 32px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: Glitch;
+    font-size: 24px;
+    margin-bottom: 32px;
+    color: rgba(0, 0, 0, 0);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(252, 240, 6);
+    position: relative;
+  }
+  
+  .title h2 {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+  }
+  
+  .dots {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    display: flex;
+    position: absolute;
+    left: 55%;
+    gap: 3.2px;
+  }
+  
+  .dots span {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    width: 10px;
+    transform: none;
+    height: 10px;
+    background: rgb(1, 215, 241) none repeat scroll 0% 0%;
+  }
+  
+  .list {
+    font-size: 24px;
+    max-width: 844.8px;
+    grid-template-columns: 390.4px 390.4px;
+    margin: 0px;
+    padding: 24px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    display: grid;
+    width: 100%;
+    gap: 16px;
+    font-weight: 400;
+    list-style: outside none none;
+  }
+  
+  .item {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+  }
+  
+  .link {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease-in-out 0s;
+    --scale: 1.05;
+    color: rgb(252, 240, 6);
+    text-decoration: none solid rgb(252, 240, 6);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .image {
+    width: 100%;
+  }
+  .item {
+    position: relative; /* Make sure the parent li is positioned */
+  }
+  
+  .text {
+    position: absolute;
+    top: 50%; /* Position the text at the vertical center */
+    left: 50%; /* Position the text at the horizontal center */
+    transform: translate(-50%, -50%); /* Center the text */
+    
+    font-size: 18px; /* Adjust the font size as needed */
+    font-weight: bold; /* Adjust the font weight as needed */
+  }  
+  
+  
+  .item {
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+    transition: background-image 0.3s ease; /* Smooth transition */
+  }
+  .hover-image {
+    display: none; /* Initially hide the hover image */
+}
+
+.item:hover .initial-image {
+    display: none; /* Hide the initial image on hover */
+}
+
+.item:hover .hover-image {
+
+    display: inline-block; /* Show the hover image on hover */
+}
+ 
+  

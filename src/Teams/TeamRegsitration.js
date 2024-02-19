@@ -18,6 +18,7 @@ function TeamRegistration() {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('success');
 
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,12 +26,133 @@ function TeamRegistration() {
     setSubmitting(false);
   }, []);
 
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
+  //   console.log('Form submitted');
+
+  //   if (representativeName && rollNumber && year && course && totalTeamMembers && idCardImage && !submitting) {
+  //     setSubmitting(true);
+
+  //     const formData = new FormData();
+  //     formData.append('representativeName', representativeName);
+  //     formData.append('rollNumber', rollNumber);
+  //     formData.append('year', year);
+  //     formData.append('course', course);
+  //     formData.append('totalTeamMembers', totalTeamMembers);
+  //     formData.append('idCardImage', idCardImage);
+
+  //     try {
+  //       // const response = await fetch('https://i-rix.tech/api/teamregfile', {
+  //       //   method: 'POST',
+  //       //   body: formData,
+  //       // });
+  //       const response = await fetch('http://localhost:5000/api/teamregfile', {
+  //         method: 'POST',
+  //         body: formData,
+  //       });
+
+  //       if (!response.ok) {
+  //         throw new Error('Failed to register team');
+  //       }
+
+  //       // Reset form
+  //       resetForm();
+
+  //       // Show toast message
+  //       dispatch(showToastTimer('Team registered successfully', 'success'));
+  //       setAlertMessage('Team registered successfully');
+  //       setAlertType('success');
+  //       setShowAlert(true);
+  //       console.log('Alert displayed s');
+        
+  //     } catch (error) {
+  //       console.error('Error:', error);
+
+  //       // Show toast message
+  //       dispatch(showToastTimer('Error registering team', 'error'));
+  //       setAlertMessage('Error registering team');
+  //       setAlertType('error');
+  //       setShowAlert(true);
+  //       console.log('Alert displayed e' );
+  //     } finally {
+  //       setSubmitting(false);
+  //     }
+  //   }
+  // }; working 
+
+
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
+  //   console.log("Form Submitted");
+  
+  //   if (representativeName && rollNumber && year && course && totalTeamMembers && idCardImage && !submitting) {
+  //     setSubmitting(true);
+  
+  //     const formData = new FormData();
+  //     formData.append('representativeName', representativeName);
+  //     formData.append('rollNumber', rollNumber);
+  //     formData.append('year', year);
+  //     formData.append('course', course);
+  //     formData.append('totalTeamMembers', totalTeamMembers);
+  //     formData.append('idCardImage', idCardImage);
+  
+  //     try {
+  //       const response = await fetch('http://localhost:5000/api/teamregfile', {
+  //         method: 'POST',
+  //         body: formData,
+  //       });
+  
+  //       if (!response.ok) {
+  //         throw new Error('Failed to register team');
+  //       }
+  
+  //       // Reset form
+  //       resetForm();
+  
+  //       // Show toast message
+  //       dispatch(showToastTimer('Team registered successfully', 'success'));
+  
+  //       // Set alert message and type
+  //       setAlertMessage('Team registered successfully');
+  //       setAlertType('success');
+  
+  //       // Show the alert with a delay
+  //       setShowAlert(true);
+  //       setTimeout(() => {
+  //         console.log("Alert e");
+  //         setShowAlert(false);
+  //       }, 6000);
+  
+  //     } catch (error) {
+  //       console.error('Error:', error);
+  
+  //       // Show toast message
+  //       dispatch(showToastTimer('Error registering team', 'error'));
+  
+  //       // Set alert message and type
+  //       setAlertMessage('Error registering team');
+  //       setAlertType('error');
+  
+  //       // Show the alert with a delay
+  //       setShowAlert(true);
+  //       setTimeout(() => {
+  //         console.log("Alert e");
+  //         setShowAlert(false);
+  //       }, 6000); // Adjust the delay as needed
+  
+  //     } finally {
+  //       setSubmitting(false);
+  //     }
+  //   }
+  // };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    console.log("Form Submitted");
+  
     if (representativeName && rollNumber && year && course && totalTeamMembers && idCardImage && !submitting) {
       setSubmitting(true);
-
+  
       const formData = new FormData();
       formData.append('representativeName', representativeName);
       formData.append('rollNumber', rollNumber);
@@ -38,38 +160,60 @@ function TeamRegistration() {
       formData.append('course', course);
       formData.append('totalTeamMembers', totalTeamMembers);
       formData.append('idCardImage', idCardImage);
-
+  
       try {
         const response = await fetch('https://i-rix.tech/api/teamregfile', {
           method: 'POST',
           body: formData,
         });
-
+  
         if (!response.ok) {
           throw new Error('Failed to register team');
         }
-
+  
         // Reset form
         resetForm();
-
+  
         // Show toast message
         dispatch(showToastTimer('Team registered successfully', 'success'));
-        setAlertMessage('Team registered successfully');
-        setAlertType('success');
-        setShowAlert(true);
+  
+        // Display alert message
+        displayAlert('Team registered successfully', 'success');
+  
       } catch (error) {
         console.error('Error:', error);
-
+  
         // Show toast message
         dispatch(showToastTimer('Error registering team', 'error'));
-        setAlertMessage('Error registering team');
-        setAlertType('error');
-        setShowAlert(true);
+  
+        // Display alert message
+        displayAlert('Error registering team', 'error');
+  
       } finally {
         setSubmitting(false);
       }
     }
   };
+  
+  const displayAlert = (message, type) => {
+    // Set alert message and type
+    setAlertMessage(message);
+    setAlertType(type);
+  
+    // Show the alert with a delay
+    setShowAlert(true);
+    setTimeout(() => {
+      console.log("Alert e");
+      setShowAlert(false);
+    }, 6000); // Adjust the delay as needed
+  };
+  
+  
+
+
+
+
+
 
   const resetForm = () => {
     setRepresentativeName('');
@@ -83,61 +227,72 @@ function TeamRegistration() {
   return (
     <Container>
       <form onSubmit={handleFormSubmit} encType="multipart/form-data">
-      <Grid container spacing={{ lg: 10, xs: 4 }}>
-            <Grid item lg={6} md={12} sm={12}>
-              <Input
-                width="100%"
-                label="Representative Name"
-                placeholder="Representative Name"
-                value={representativeName}
-                onChange={(e) => setRepresentativeName(e.target.value)}
-              />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12}>
-              <Input
-                width="100%"
-                label="Roll Number"
-                placeholder="Roll Number"
-                value={rollNumber}
-                onChange={(e) => setRollNumber(e.target.value)}
-              />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12}>
-              <Input
-                width="100%"
-                label="Year"
-                placeholder="Year"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-              />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12}>
-              <Input
-                width="100%"
-                label="Course"
-                placeholder="Course"
-                value={course}
-                onChange={(e) => setCourse(e.target.value)}
-              />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12}>
-              <Input
-                width="100%"
-                label="Total Team Members"
-                placeholder="Total Team Members"
-                value={totalTeamMembers}
-                onChange={(e) => setTotalTeamMembers(e.target.value)}
-              />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12}>
-              <Input
-                width="100%"
-                type="file"
-                label="Upload ID Card Image"
-                onChange={(e) => setIdCardImage(e.target.files[0])}
-              />
-            </Grid>
+        <Grid container spacing={{ lg: 10, xs: 4 }}>
+          <Grid item lg={6} md={12} sm={12}>
+            <Input
+              width="100%"
+              label="Representative Name"
+              placeholder="Representative Name"
+              value={representativeName}
+              onChange={(e) => {
+                const inputValue = e.target.value;
+                if (/^[A-Za-z\s]+$/.test(inputValue)) {
+                  setRepresentativeName(inputValue);
+                }
+              }}
+            />
           </Grid>
+
+          <Grid item lg={6} md={12} sm={12}>
+            <Input
+              width="100%"
+              label="Roll Number"
+              placeholder="Roll Number"
+              value={rollNumber}
+              onChange={(e) => setRollNumber(e.target.value)}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12}>
+            <Input
+              width="100%"
+              label="Year"
+              placeholder="Year"
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12}>
+            <Input
+              width="100%"
+              label="Course"
+              placeholder="Course"
+              value={course}
+              onChange={(e) => setCourse(e.target.value)}
+            />
+          </Grid>
+          <Grid item lg={6} md={12} sm={12}>
+            <Input
+              width="100%"
+              label="Total Team Members"
+              placeholder="Total Team Members"
+              value={totalTeamMembers}
+              onChange={(e) => {
+                // Ensure the entered value is numeric
+                const numericValue = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+                setTotalTeamMembers(numericValue);
+              }}
+            />
+          </Grid>
+
+          <Grid item lg={6} md={12} sm={12}>
+            <Input
+              width="100%"
+              type="file"
+              label="Upload ID Card Image"
+              onChange={(e) => setIdCardImage(e.target.files[0])}
+            />
+          </Grid>
+        </Grid>
         <div style={{ margin: '3.5rem 0 1.8rem 0', display: 'flex', justifyContent: 'center' }}>
           <Button type="submit" disabled={submitting}>
             {submitting ? 'Submitting...' : 'Register Team'}

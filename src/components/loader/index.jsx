@@ -1,12 +1,13 @@
-import LoaderImg from '../../assets/IRIXGGIFF.gif'
-import LoaderVid from '../../assets/IRIXWEB.mp4'
+import LoaderImg from '../../assets/i-rixx.gif'
+// import LoaderVid from '../../assets/IRIXWEB.mp4'
 
 const Loader = () => {
   return (
-    <img
+    <img alt='I-RIX'
       src={LoaderImg}
       style={{
         position: 'fixed',
+        
         top: 0,
         left: 0,
         width: '100%',
@@ -30,9 +31,7 @@ const Loader = () => {
     //   }}
     // >
     //   <source
-    //     src={
-    //       'https://res.cloudinary.com/kaitomedia/video/upload/v1646895617/ureckon_loader_xom4gz.mp4'
-    //     }
+    //     src={LoaderVid}
     //     type="video/mp4"
     //   />
     // </video>

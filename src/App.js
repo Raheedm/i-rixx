@@ -11,8 +11,8 @@ import HomeNav from './HomeNav';
 import ToastBar from './components/Toast/ToastBar';
 import Footer from './components/footer';
 import Home from './Home';
-
-
+import Events from './Events/Events';
+import EventsList from './Events/EventsList';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -76,6 +76,28 @@ function App() {
                     {/* <Header /> */}
                     
                       <TeamRegistration />
+                   
+                  </>
+                }
+              />
+              <Route
+                path="/events"
+                element={
+                  <>
+                    {/* <Header /> */}
+                    
+                      <Events/>
+                   
+                  </>
+                }
+              />
+              <Route
+                path="/eventslist"
+                element={
+                  <>
+                    {/* <Header /> */}
+                    
+                      <EventsList/>
                    
                   </>
                 }

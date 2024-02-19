@@ -14,7 +14,7 @@ const HomeNav = () => {
     >
       
       <Grid item sx={{ paddingTop: 2 }}>
-        <img src={headingLogo} alt="UEM" className="img" style={{ height: '310px' ,width:'500px' }} />
+        <img src={headingLogo} alt="IRIX" className="img" style={{ height: '310px' ,width:'500px' }} />
       </Grid>
       
     </Grid>
