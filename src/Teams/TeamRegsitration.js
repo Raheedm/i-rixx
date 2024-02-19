@@ -64,7 +64,7 @@ function TeamRegistration() {
   //       setAlertType('success');
   //       setShowAlert(true);
   //       console.log('Alert displayed s');
-        
+
   //     } catch (error) {
   //       console.error('Error:', error);
 
@@ -84,10 +84,10 @@ function TeamRegistration() {
   // const handleFormSubmit = async (event) => {
   //   event.preventDefault();
   //   console.log("Form Submitted");
-  
+
   //   if (representativeName && rollNumber && year && course && totalTeamMembers && idCardImage && !submitting) {
   //     setSubmitting(true);
-  
+
   //     const formData = new FormData();
   //     formData.append('representativeName', representativeName);
   //     formData.append('rollNumber', rollNumber);
@@ -95,51 +95,51 @@ function TeamRegistration() {
   //     formData.append('course', course);
   //     formData.append('totalTeamMembers', totalTeamMembers);
   //     formData.append('idCardImage', idCardImage);
-  
+
   //     try {
   //       const response = await fetch('http://localhost:5000/api/teamregfile', {
   //         method: 'POST',
   //         body: formData,
   //       });
-  
+
   //       if (!response.ok) {
   //         throw new Error('Failed to register team');
   //       }
-  
+
   //       // Reset form
   //       resetForm();
-  
+
   //       // Show toast message
   //       dispatch(showToastTimer('Team registered successfully', 'success'));
-  
+
   //       // Set alert message and type
   //       setAlertMessage('Team registered successfully');
   //       setAlertType('success');
-  
+
   //       // Show the alert with a delay
   //       setShowAlert(true);
   //       setTimeout(() => {
   //         console.log("Alert e");
   //         setShowAlert(false);
   //       }, 6000);
-  
+
   //     } catch (error) {
   //       console.error('Error:', error);
-  
+
   //       // Show toast message
   //       dispatch(showToastTimer('Error registering team', 'error'));
-  
+
   //       // Set alert message and type
   //       setAlertMessage('Error registering team');
   //       setAlertType('error');
-  
+
   //       // Show the alert with a delay
   //       setShowAlert(true);
   //       setTimeout(() => {
   //         console.log("Alert e");
   //         setShowAlert(false);
   //       }, 6000); // Adjust the delay as needed
-  
+
   //     } finally {
   //       setSubmitting(false);
   //     }
@@ -149,10 +149,10 @@ function TeamRegistration() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log("Form Submitted");
-  
+
     if (representativeName && rollNumber && year && course && totalTeamMembers && idCardImage && !submitting) {
       setSubmitting(true);
-  
+
       const formData = new FormData();
       formData.append('representativeName', representativeName);
       formData.append('rollNumber', rollNumber);
@@ -160,46 +160,46 @@ function TeamRegistration() {
       formData.append('course', course);
       formData.append('totalTeamMembers', totalTeamMembers);
       formData.append('idCardImage', idCardImage);
-  
+
       try {
         const response = await fetch('https://i-rix.tech/api/teamregfile', {
           method: 'POST',
           body: formData,
         });
-  
+
         if (!response.ok) {
           throw new Error('Failed to register team');
         }
-  
+
         // Reset form
         resetForm();
-  
+
         // Show toast message
         dispatch(showToastTimer('Team registered successfully', 'success'));
-  
+
         // Display alert message
         displayAlert('Team registered successfully', 'success');
-  
+
       } catch (error) {
         console.error('Error:', error);
-  
+
         // Show toast message
         dispatch(showToastTimer('Error registering team', 'error'));
-  
+
         // Display alert message
         displayAlert('Error registering team', 'error');
-  
+
       } finally {
         setSubmitting(false);
       }
     }
   };
-  
+
   const displayAlert = (message, type) => {
     // Set alert message and type
     setAlertMessage(message);
     setAlertType(type);
-  
+
     // Show the alert with a delay
     setShowAlert(true);
     setTimeout(() => {
@@ -207,8 +207,8 @@ function TeamRegistration() {
       setShowAlert(false);
     }, 6000); // Adjust the delay as needed
   };
-  
-  
+
+
 
 
 
@@ -236,7 +236,7 @@ function TeamRegistration() {
               value={representativeName}
               onChange={(e) => {
                 const inputValue = e.target.value;
-                if (/^[A-Za-z\s]+$/.test(inputValue)) {
+                if (/^[A-Za-z\s]*$/.test(inputValue)) {
                   setRepresentativeName(inputValue);
                 }
               }}
