@@ -33,7 +33,7 @@ const Footer = () => {
         © Copyright I-RIX 2024
       </Typography>
       
-      <a href="https://www.instagram.com/irix_dcs/" target="_blank">
+      <a href="https://www.instagram.com/irix_pccas/" target="_blank">
         <img src={InstagramIcon} alt="instagram" style={ImgStyle} />
       </a>
       

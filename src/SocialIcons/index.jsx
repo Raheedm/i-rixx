@@ -27,7 +27,7 @@ function SocialIcons() {
         </Grid> */}
         <Grid item sx={{ my: 1 }}>
           <a
-            href="https://www.instagram.com/irix_dcs/"
+            href="https://www.instagram.com/irix_pccas/"
             target="_blank"
             rel="noreferrer"
           >
