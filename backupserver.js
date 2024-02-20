@@ -1,15 +1,88 @@
+// const express = require('express');
+// const multer = require('multer');
+// const fs = require('fs');
+// const nodemailer = require('nodemailer');
+// const path = require('path');
+// const app = express();
+// const bodyParser = require('body-parser');
+// const cors = require('cors');
+// const mongoose = require('mongoose');
+// require('dotenv').config();
+
+// app.use(bodyParser.json());
+// app.use(cors());
+// app.use(express.json());
+
+// const PORT = process.env.PORT || 5000;
+// const MONGO_URI = process.env.MONGO_URI;
+// mongoose.connect(MONGO_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+
+
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// db.once('open', () => {
+//   console.log('Connected to MongoDB');
+// });
+
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'rah004@chowgules.ac.in',
+//     pass: 'Whoisthis@3', 
+//   },
+// });
+
+// const publicDirectoryPath = path.join(__dirname, 'public/uploads');
+
+// if (!fs.existsSync(publicDirectoryPath)){
+//     fs.mkdirSync(publicDirectoryPath);
+// }
+
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, publicDirectoryPath);
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname);
+//   },
+// });
+
+// const upload = multer({ 
+//   storage: storage,
+//   limits: {
+//     fileSize: 1024 * 1024 * 5 // 5MB file size limit
+//   }
+// });
+// //my build folder is in the root directory
+// const User = mongoose.model('User', {
+//   representativeName: String, // Add these fields for team registration
+//   rollNumber: String,
+//   year: String,
+//   course: String,
+//   totalTeamMembers: Number,
+//   idCardImageName: String,
+//   idCardImagePath: String,
+// }, 'users'); working
+
+
+
+
+
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
 const path = require('path');
-const rateLimit = require('express-rate-limit');
+const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
-
-const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -22,8 +95,6 @@ mongoose.connect(MONGO_URI, {
   useUnifiedTopology: true,
 });
 
-
-
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
@@ -34,14 +105,14 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'rah004@chowgules.ac.in',
-    pass: 'Whoisthis@3', 
+    pass: 'Whoisthis@3',
   },
 });
 
 const publicDirectoryPath = path.join(__dirname, 'public/uploads');
 
-if (!fs.existsSync(publicDirectoryPath)){
-    fs.mkdirSync(publicDirectoryPath);
+if (!fs.existsSync(publicDirectoryPath)) {
+  fs.mkdirSync(publicDirectoryPath);
 }
 
 const storage = multer.diskStorage({
@@ -53,22 +124,29 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ 
+const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1024 * 1024 * 5 // 5MB file size limit
-  }
+    fileSize: 1024 * 1024 * 5, // 5MB file size limit
+  },
 });
-//my build folder is in the root directory
+
 const User = mongoose.model('User', {
-  representativeName: String, // Add these fields for team registration
+  representativeName: String,
   rollNumber: String,
   year: String,
   course: String,
   totalTeamMembers: Number,
   idCardImageName: String,
   idCardImagePath: String,
+  ipAddress: String,
 }, 'users');
+
+// Rate limiting configuration
+
+
+
+
 // Serve static files from the 'build' directory
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -126,20 +204,16 @@ app.get('/*', function (req, res) {
 //   }
 // });
 
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 2, // Max requests per windowMs
-    keyGenerator: (req) => {
-      // Use the first IP address from the X-Forwarded-For header as the key for rate limiting
-      const forwardedFor = req.headers['x-forwarded-for'];
-      return forwardedFor ? forwardedFor.split(',')[0] : req.ip;
-    },
-    message: 'Too many requests from this IP, please try again later.',
-  });
-  
-app.use('/api/teamregfile', limiter);
 
-app.post('/api/teamregfile', upload.single('idCardImage'), async (req, res) => {
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 3, // limit each IP to 3 submissions within 15 minutes
+  message: 'Too many submissions from this IP, please try again later.',
+});
+app.post('/api/teamregfile', limiter,  upload.single('idCardImage'), async (req, res) => {
+  console.log('Received POST request to /api/teamregfile');
+  console.log('Client IP:', req.headers['x-forwarded-for']);
+
   try {
     console.log('Request body:', req.body);
     console.log('Request file:', req.file);

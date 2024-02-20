@@ -128,7 +128,7 @@ app.get('/*', function (req, res) {
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 2, // Max requests per windowMs
+    max: 3, // Max requests per windowMs
     keyGenerator: (req) => {
       // Use the first IP address from the X-Forwarded-For header as the key for rate limiting
       const forwardedFor = req.headers['x-forwarded-for'];

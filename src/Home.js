@@ -56,9 +56,7 @@ function Home({ open, setOpen, handleOpen, handleClose, inProp, setInProp }) {
     }, 2000)
   }, [])
 
-  if (fakeLoading) {
-    return <Loader />
-  } else {
+  
     return (
       <div className={classes.root} style={{ marginTop: '-2.4rem' }}>
         {/* Announcement Modal */}
@@ -279,6 +277,6 @@ function Home({ open, setOpen, handleOpen, handleClose, inProp, setInProp }) {
       </div>
     )
   }
-}
+
 
 export default Home
